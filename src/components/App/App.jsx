@@ -20,12 +20,6 @@ function App() {
     });
   };
 
-  const deleteContact = (contactId) => {
-    setContacts((prevContacts) => {
-      return prevContacts.filter((contact) => contact.id !== contactId);
-    });
-  };
-
   useEffect(() => {
     localStorage.setItem("saved-contacts", JSON.stringify(contacts));
   }, [contacts]);
@@ -35,18 +29,20 @@ function App() {
     setSearchValue(evt.target.value);
   };
 
-  const visibleContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(searchValue.toLowerCase())
-  );
+  // const visibleContacts = contacts.filter((contact) =>
+  //   contact.name.toLowerCase().includes(searchValue.toLowerCase())
+  // );
 
   return (
     <div className={css.container}>
       <h1 className={css.title}>Phonebook</h1>
       <ContactForm onAdd={addContact} />
       <SearchBox onSearch={handleSearch} value={searchValue} />
-      <ContactList onDelete={deleteContact} contacts={visibleContacts} />
+      <ContactList />
     </div>
   );
 }
 
 export default App;
+
+// contacts = { visibleContacts };
