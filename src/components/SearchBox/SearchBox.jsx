@@ -8,7 +8,6 @@ const SearchBox = () => {
 
   const dicpatch = useDispatch();
   const handleSearch = (e) => {
-    console.log(e);
     dicpatch(changeFilter(e.target.value));
   };
   return (

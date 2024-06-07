@@ -11,5 +11,5 @@ const filterSlice = createSlice({
 });
 
 export const selectFilter = (state) => state.filter;
-export const { findContact } = filterSlice.actions;
+export const { changeFilter } = filterSlice.actions;
 export default filterSlice.reducer;
