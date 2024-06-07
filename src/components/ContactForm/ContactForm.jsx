@@ -1,24 +1,17 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
-import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contactsSlice";
+import css from "./ContactForm.module.css";
 
 const ContactForm = () => {
-  const dispatch = useDispatch();
   const initialValues = {
     name: "",
     number: "",
   };
-  const handleSubmit = (values, actions) => {
-    dispatch(addContact(values.name, values.number));
-    actions.resetForm();
-  };
-
   const userId = useId();
   const numberId = useId();
-
   const FeedbackSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, "Too Short!")
@@ -31,6 +24,12 @@ const ContactForm = () => {
       })
       .required("Required"),
   });
+
+  const dispatch = useDispatch();
+  const handleSubmit = (values, actions) => {
+    dispatch(addContact(values.name, values.number));
+    actions.resetForm();
+  };
 
   return (
     <Formik
@@ -62,6 +61,3 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-
-// /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-// 063-111-2233
